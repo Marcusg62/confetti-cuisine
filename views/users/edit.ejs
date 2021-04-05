@@ -1,0 +1,21 @@
+<div class="form-data">
+    <form action="/users/${users._id}/update?method=PUT" method="POST">
+    <label for="txtFirst">First</label>
+    <input type="text" name="first" id="txtFirst" autofocus required autocomplete="none" value="<%user.first%>">
+    
+    <label for="txtLast">Last</label>
+    <input type="text" name="name" id="txtLast" autofocus required autocomplete="none" value="<%user.last%>">
+
+    <label for="txtEmail">Email Address</label>
+    <input type="email" name="email" id="txtEmail" required autocomplete="email" value="<%user.email%>">
+
+    <label for="txtzipCode">Zip Code</label>
+    <input type="text" name="name" pattern="[0-9]{5}" id="txtName" required autocomplete="postal-code" value="<%user.zipCode%>">
+
+    <label for="txtPassword">Password</label>
+    <input type="password" name="name" id="txtPassword" autofocus required autocomplete="none" value="<%user.last%>">
+
+    <button type="submit">Save</button>
+
+    </form>
+</div>
