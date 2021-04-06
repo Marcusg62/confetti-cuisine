@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 module.exports = {
 	index: (req, res, next) => {
-		User.find()
+		User.find({})
 			.then((users) => {
 				res.locals.users = users;
 				next();
@@ -12,8 +12,12 @@ module.exports = {
 				next(error);
 			});
 	},
+	indexView: (req, res) => {
+		// console.log("res.locals.....", res.locals);
+		res.render("users/index");
+	},
 	new: (req, res) => {
-		res.render("/users/new");
+		res.render("users/new");
 	},
 	create: (req, res, next) => {
 		let newUser = new User({
@@ -21,9 +25,9 @@ module.exports = {
 				first: req.body.first,
 				last: req.body.last,
 			},
-            password: req.body.password,
 			email: req.body.email,
-			zipCode: req.body.zipCode,
+			password: req.body.password,
+			zipCode: req.body.zipCode
 		});
 
 		User.create(newUser)
@@ -37,19 +41,12 @@ module.exports = {
 				next(error);
 			});
 	},
-	redirectView: (req, res, next) => {
-		let redirectPath = res.locals.redirect;
-		if (redirectPath != undefined) {
-			res.redirect(redirectPath);
-		} else {
-			next();
-		}
-	},
 	show: (req, res, next) => {
 		let userId = req.params.id;
 		User.findById(userId)
 			.then((user) => {
-				res.lovals.user = user;
+				res.locals.user = user;
+				next();
 			})
 			.catch((error) => {
 				console.log("Error fetching user by id. ");
@@ -57,40 +54,45 @@ module.exports = {
 			});
 	},
 	showView: (req, res) => {
-		res.render("/users/show");
+		res.render("users/show");
 	},
 	edit: (req, res, next) => {
 		let userId = req.params.id;
 		User.findById(userId)
 			.then((user) => {
-				res.render("/users/edit", { user: user });
+				res.render("users/edit", { user: user });
 			})
 			.catch((error) => {
 				console.error("Error fetching user by id. ");
 			});
 	},
-	update: (req, res, next) => {
+	update: async (req, res, next) => {
 		let userId = req.params.id;
-		let updatedUser = new User({
+		console.log("edit data: ", req.body);
+
+		let updatedUser = {
 			name: {
 				first: req.body.first,
 				last: req.body.last,
 			},
-            password: req.body.password,
 			email: req.body.email,
-			zipCode: req.body.zipCode,
-		});
+			password: req.body.password,
+			zipCode: req.body.zipCode
+		};
 
-		User.findOneAndUpdate(userId, updatedUser)
-			.then((user) => {
-				res.locals.user = user;
-				res.locals.redirect = `/users/${user._id}`;
-				next();
-			})
-			.catch((error) => {
-				console.error("error fetching and updating user");
-				next(error);
+		try {
+			console.log("user id", userId);
+			const doc = await User.findById(userId);
+			console.log("found user", doc);
+			await User.findByIdAndUpdate(userId, {
+				$set: updatedUser,
 			});
+			res.locals.redirect = `/users/${doc._id}`;
+			next();
+		} catch (error) {
+			console.error(error);
+			next(error);
+		}
 	},
 	delete: (req, res, next) => {
 		let userId = req.params.id;
@@ -103,5 +105,10 @@ module.exports = {
 				console.error("error deleting user");
 				next(error);
 			});
+	},
+	redirectView: (req, res, next) => {
+		let redirectPath = res.locals.redirect;
+		if (redirectPath !== undefined) res.redirect(redirectPath);
+		else next();
 	},
 };

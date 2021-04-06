@@ -2,22 +2,28 @@
 <table class="table">
     <tbody>
         <tr>
-            <td>Name</td>
-            <td>
-                <% subscriber.name %>
-            </td>
-            <td>Email</td>
-            <td>
-                <% subscriber.email %>
-            </td>
-            <td>Zip Code</td>
-            <td>
-                <% subscriber.zipCode %>
-            </td>
+            <th>Name</th>
+
+            <th>Email</th>
+
+            <th>Zip Code</th>
+
+            <th>Courses</th>
+
         </tr>
         <tr>
-            <td>Num of courses</td>
-            <td><% subscribers.courses.length %> </td>
+            <td>
+                <%= subscriber.name %>
+            </td>
+            <td>
+                <%= subscriber.email %>
+            </td>
+            <td>
+                <%= subscriber.zipCode %>
+            </td>
+            <td>
+                <%= subscriber.courses %>
+            </td>
         </tr>
     </tbody>
 </table>

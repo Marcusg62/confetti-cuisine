@@ -25,8 +25,5 @@ const courseSchema = mongoose.Schema({
     timestamps: true
 });
 
-subscriberSchema.methods.getinfo = function() {
-    return `Name: ${this.name} Email: ${this.email} Zipcode ${this.zipCode}`
-}
 
 module.exports = mongoose.model("Course", courseSchema)

@@ -1,34 +1,32 @@
 <h2 class="center">User Table</h2>
+<a href="/users/new">Create New User</a>
 <table class="table">
     <thead>
         <tr>
-            <th>Full Name</th>
+            <th>Name</th>
             <th>Email</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
     </thead>
     <tbody>
-        <% users.forEach(s=> { %>
+        <% users.forEach((c)=> { %>
             <tr>
                 <td>
-                    <a href="<% `/users/${s._id}`%> ">
-                        <% s.fullName %>
+                    <a href="<%= `/users/${c._id}`%> ">
+                        <%= c.fullName %>
                     </a>
                 </td>
                 <td>
-                    <% s.email %>
+                    <%= c.email %>
                 </td>
                 <td>
-                    <% s.zipCode %>
-                </td>
-                <td>
-                    <a href="<% `/users/${s._id}/edit`%> ">
+                    <a href="<%= `/users/${c._id}/edit`%> ">
                         Edit
                     </a>
                 </td>
                 <td>
-                    <a href="<% `/users/${s._id}/delete?_method=DELETE`%>" onclick="confirm('Are you sure you want to delete? ')">
+                    <a href="<%= `/users/${c._id}/delete?_method=DELETE`%>" onclick="confirm('Are you sure you want to delete? ')">
                         Delete
                     </a>
                 </td>

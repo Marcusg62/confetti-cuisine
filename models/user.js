@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Subscriber = require("./subscriber");
+const Course = require('./course')
 const userSchema = mongoose.Schema(
 	{
 		name: {
@@ -13,6 +14,7 @@ const userSchema = mongoose.Schema(
 			},
 		},
 		email: {
+			type: String,
 			required: true,
 			lowercase: true,
 			unique: true,

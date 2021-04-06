@@ -81,7 +81,7 @@ a {
   margin-right: 5px;
 }
 
-.subscription-form input {
+form > input, form > label {
   display: block;
   margin: 5px;
 }

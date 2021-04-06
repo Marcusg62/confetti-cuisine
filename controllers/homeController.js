@@ -20,6 +20,8 @@ var courses = [
         cost: 50
     },
 ]
-exports.index = (req, res) => {
-    res.render('index')
+module.exports = {
+    index: (req, res) => {
+        res.render('index')
+    }
 }

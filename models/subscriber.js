@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Course = require("./course")
 
 const subscriberSchema = mongoose.Schema({
     name: {
@@ -6,6 +7,7 @@ const subscriberSchema = mongoose.Schema({
         required: true
     },
     email: {
+        type: String,
         required: true,
         lowercase: true,
         unique: true
@@ -21,8 +23,8 @@ const subscriberSchema = mongoose.Schema({
     timestamps: true
 });
 
-subscriberSchema.methods.getinfo = function() {
-    return `Name: ${this.name} Email: ${this.email} Zipcode ${this.zipCode}`
-}
+subscriberSchema.methods.getInfo = function() {
+    return `Name: ${this.name} Email: ${this.email} Zip Code: ${this.zipCode}`;
+  };
 
 module.exports = mongoose.model("Subscriber", subscriberSchema)

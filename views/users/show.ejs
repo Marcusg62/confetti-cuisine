@@ -1,18 +1,28 @@
-<h2 class="center">User Details</h2>
+<h2 class="center">user Details</h2>
 <table class="table">
     <tbody>
         <tr>
-            <td>Full Name</td>
+            <th>Full Name</th>
+
+            <th>Email</th>
+
+            <th>Password (😂)</th>
+
+            <th>Zip Code</th>
+
+        </tr>
+        <tr>
             <td>
-                <% user.fullName %>
+                <%= user.fullName %>
             </td>
-            <td>Email</td>
             <td>
-                <% user.email %>
+                <%= user.email %>
             </td>
-            <td>Zip Code</td>
             <td>
-                <% user.zipCode %>
+                <%= user.password %>
+            </td>
+            <td>
+                <%= user.zipCode %>
             </td>
         </tr>
     </tbody>

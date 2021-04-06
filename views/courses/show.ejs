@@ -1,22 +1,28 @@
-<h2 class="center">Subscriber Details</h2>
+<h2 class="center">course Details</h2>
 <table class="table">
     <tbody>
         <tr>
-            <td>Title</td>
+            <th>Title</th>
+
+            <th>Description</th>
+
+            <th>Max Students</th>
+
+            <th>Cost</th>
+
+        </tr>
+        <tr>
             <td>
-                <% subscriber.name %>
+                <%= course.title %>
             </td>
-            <td>Description</td>
             <td>
-                <% subscriber.email %>
+                <%= course.description %>
             </td>
-            <td>Max Students</td>
             <td>
-                <% subscriber.maxStudents %>
+                <%= course.maxStudents %>
             </td>
-            <td>Cost</td>
             <td>
-                $<% subscriber.cost %>
+                $<%= course.cost %>
             </td>
         </tr>
     </tbody>

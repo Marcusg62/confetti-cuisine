@@ -1,4 +1,5 @@
 <h2 class="center">Course Table</h2>
+<a href="/courses/new">Create New Course</a>
 <table class="table">
     <thead>
         <tr>
@@ -9,23 +10,23 @@
         </tr>
     </thead>
     <tbody>
-        <% coursec.forEach(s=> { %>
+        <% courses.forEach((c)=> { %>
             <tr>
                 <td>
-                    <a href="<% `/courses/${c._id}`%> ">
-                        <% c.title %>
+                    <a href="<%= `/courses/${c._id}`%> ">
+                        <%= c.title %>
                     </a>
                 </td>
                 <td>
-                    <% c.description %>
+                    <%= c.description %>
                 </td>
                 <td>
-                    <a href="<% `/courses/${c._id}/edit`%> ">
+                    <a href="<%= `/courses/${c._id}/edit`%> ">
                         Edit
                     </a>
                 </td>
                 <td>
-                    <a href="<% `/courses/${c._id}/delete?_method=DELETE`%>" onclick="confirm('Are you sure you want to delete? ')">
+                    <a href="<%= `/courses/${c._id}/delete?_method=DELETE`%>" onclick="confirm('Are you sure you want to delete? ')">
                         Delete
                     </a>
                 </td>
